@@ -1,8 +1,7 @@
 package com.mycompany.congresos_web_app.backend.crud;
 
-import static jakarta.mail.Flags.Flag.USER;
+import com.mycompany.congresos_web_app.backend.daos.DAO;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,18 +10,17 @@ import java.sql.SQLException;
  *
  * @author antho
  */
-public class CRUD<T> {
-
-    private T contenido;
+public class CRUD {
+    
     private final Connection CONNECTION;
     
     public CRUD(Connection connection) {
         this.CONNECTION = connection;
     }
 
-    public T getById(String id, String apartado, String tabla) {
+    public DAO getById(String id, String apartado, String tabla) {
         
-        T objeto = null;
+        DAO entity = null;
         String sql = "SELECT * FROM ? WHERE ? = ?";
 
         try (PreparedStatement stmt = CONNECTION.prepareStatement(sql)) {
@@ -33,14 +31,14 @@ public class CRUD<T> {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                
+                entity.setItems(rs);
             }
 
         } catch (SQLException e) {
             e.printStackTrace(); // o usa un logger si prefieres
         }
 
-        return objeto;
+        return entity;
 
     }
 
