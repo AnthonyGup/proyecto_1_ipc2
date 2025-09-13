@@ -2,14 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.congresos_web_app.backend.daos;
+package com.mycompany.congresos_web_app.backend.crud;
 
 /**
  *
  * @author antho
  */
-public abstract class DAO{
-    
-    public abstract DAO setItems();
+public class UsuarioDAO {
     
 }
