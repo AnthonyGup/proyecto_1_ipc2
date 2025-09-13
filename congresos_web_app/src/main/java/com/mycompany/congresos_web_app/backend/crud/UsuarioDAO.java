@@ -8,6 +8,6 @@ package com.mycompany.congresos_web_app.backend.crud;
  *
  * @author antho
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements Crud<> {
     
 }
