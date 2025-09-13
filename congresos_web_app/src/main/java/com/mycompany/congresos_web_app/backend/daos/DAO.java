@@ -4,14 +4,12 @@
  */
 package com.mycompany.congresos_web_app.backend.daos;
 
-import java.sql.ResultSet;
-
 /**
  *
  * @author antho
  */
 public abstract class DAO{
     
-    public abstract void setItems(ResultSet rs);
+    public abstract DAO setItems();
     
 }
