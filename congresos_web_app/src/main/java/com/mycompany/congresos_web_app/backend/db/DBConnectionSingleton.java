@@ -16,8 +16,8 @@ public class DBConnectionSingleton {
     private static final String IP = "localhost";
     private static final int PUERTO = 3306;
     private static final String SCHEMA = "congresosdb";
-    private static final String USER_NAME = "admindba";
-    private static final String PASSWORD = "12345";
+    private static final String USER_NAME = "root";
+    private static final String PASSWORD = "admin";
     private static final String URL = "jdbc:mysql://" + IP + ":" + PUERTO + "/" + SCHEMA;
 
     private static DBConnectionSingleton instance;

@@ -90,10 +90,10 @@ public class CreadorEsquema {
                          
                          CREATE TABLE inscripcion (
                          id_inscripcion INT AUTO_INCREMENT,
-                         id_participante VARCHAR(20) NOT NULL,
-                         id_congreso VARCHAR(12) NOT NULL,
                          fecha_pago DATE NOT NULL,
                          monto DECIMAL (10,2) NOT NULL,
+                         id_participante VARCHAR(20) NOT NULL,
+                         id_congreso VARCHAR(12) NOT NULL,
                          CONSTRAINT pk_inscripcion PRIMARY KEY (id_inscripcion),
                          CONSTRAINT fk_inscripcion_participante FOREIGN KEY (id_participante) REFERENCES participante (id_personal),
                          CONSTRAINT fk_inscripcion_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
