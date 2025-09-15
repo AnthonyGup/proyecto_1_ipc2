@@ -4,6 +4,7 @@
  */
 package com.mycompany.congresos_web_app.backend.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -12,15 +13,24 @@ import java.util.Date;
  */
 public class Reserva {
     
-    private final int ID_RESERVA;
-    private final Date FECHA_RESERVA;
-    private final String ID_ACTIVIDAD;
-    private final String ID_PARTICIPANTE;
+    private int ID_RESERVA;
+    private LocalDate FECHA_RESERVA;
+    private String ID_ACTIVIDAD;
+    private String ID_PARTICIPANTE;
 
-    public Reserva(int ID_RESERVA, Date FECHA_RESERVA, String ID_ACTIVIDAD, String ID_PARTICIPANTE) {
+    public void setID_RESERVA(int ID_RESERVA) {
         this.ID_RESERVA = ID_RESERVA;
+    }
+
+    public void setFECHA_RESERVA(LocalDate FECHA_RESERVA) {
         this.FECHA_RESERVA = FECHA_RESERVA;
+    }
+
+    public void setID_ACTIVIDAD(String ID_ACTIVIDAD) {
         this.ID_ACTIVIDAD = ID_ACTIVIDAD;
+    }
+
+    public void setID_PARTICIPANTE(String ID_PARTICIPANTE) {
         this.ID_PARTICIPANTE = ID_PARTICIPANTE;
     }
 
@@ -28,7 +38,7 @@ public class Reserva {
         return ID_RESERVA;
     }
 
-    public Date getFECHA_RESERVA() {
+    public LocalDate getFECHA_RESERVA() {
         return FECHA_RESERVA;
     }
 

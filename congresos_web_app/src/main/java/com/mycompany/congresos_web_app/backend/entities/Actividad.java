@@ -13,19 +13,19 @@ import java.time.LocalTime;
  */
 public class Actividad {
     
-    private  String ID_TRABAJO;
-    private  String NOMBRE;
-    private  String DESCRIPCION;
-    private int cupo_maximo;
-    private  TipoActividad TIPO;
-    private  LocalTime HORA_INICIO;
-    private  LocalTime HORA_FIN;
-    private  String ID_ENCARGADO;
-    private  String ID_CONGRESO;
-    private  int ID_SALON;
+    private String id_actividad;
+    private String NOMBRE;
+    private String DESCRIPCION;
+    private int cupo_maximo = 0;
+    private TipoActividad TIPO;
+    private LocalTime HORA_INICIO;
+    private LocalTime HORA_FIN;
+    private String ID_ENCARGADO;
+    private String ID_CONGRESO;
+    private int ID_SALON;
 
-    public void setID_TRABAJO(String ID_TRABAJO) {
-        this.ID_TRABAJO = ID_TRABAJO;
+    public void setId_actividad(String id_actividad) {
+        this.id_actividad = id_actividad;
     }
 
     public void setNOMBRE(String NOMBRE) {
@@ -66,8 +66,8 @@ public class Actividad {
         this.cupo_maximo = cupo_maximo;
     }
 
-    public String getID_TRABAJO() {
-        return ID_TRABAJO;
+    public String getId_actividad() {
+        return id_actividad;
     }
 
     public String getNOMBRE() {

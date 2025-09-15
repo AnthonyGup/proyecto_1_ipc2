@@ -4,22 +4,21 @@
  */
 package com.mycompany.congresos_web_app.backend.crud;
 
-import com.mycompany.congresos_web_app.backend.db.DBConnectionSingleton;
 import com.mycompany.congresos_web_app.backend.entities.Participante;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author antho
  */
-public class ParticipanteDAO implements Crud<Participante> {
+public class ParticipanteDAO extends Crud<Participante> {
 
-    private final Connection CONNECTION = DBConnectionSingleton.getInstance().getConnection();
+    public ParticipanteDAO() {
+        super("participante", "id_personal");
+    }
+
     
     @Override
     public boolean create(Participante entidad) throws SQLException {
@@ -38,47 +37,7 @@ public class ParticipanteDAO implements Crud<Participante> {
     }
 
     @Override
-    public Participante read(String id) throws SQLException {
-        String sql = "SELECT * FROM participante WHERE id_personal = ?";
-        
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setString(1, id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            return obtenerEntidad(rs);
-        }
-
-        return null;
-    }
-
-    @Override
-    public List<Participante> readAll(String tabla) throws SQLException {
-        List<Participante> participantes = new ArrayList<>();
-        String sql = "SELECT * FROM participante";
-
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            participantes.add(obtenerEntidad(rs));
-        }
-
-        return participantes;
-    }
-
-    @Override
     public boolean update(String id) throws SQLException {
-        String sql = "DELETE FROM participante WHERE id_personal = ?";
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setString(1, id);
-
-        int filasEliminadas = stmt.executeUpdate();
-        return filasEliminadas > 0;
-    }
-
-    @Override
-    public boolean delete(String id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

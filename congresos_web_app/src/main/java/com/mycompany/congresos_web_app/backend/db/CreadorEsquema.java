@@ -137,7 +137,7 @@ public class CreadorEsquema {
                          id_actividad VARCHAR(12) NOT NULL,
                          nombre VARCHAR(150) NOT NULL,
                          descripcion VARCHAR(500) NOT NULL,
-                         cupo_maximo INT,
+                         cupo_maximo INT DEFAULT 0,
                          tipo ENUM ('PONENCIA', 'TALLER'),
                          hora_inicio TIME NOT NULL,
                          hora_fin TIME NOT NULL,

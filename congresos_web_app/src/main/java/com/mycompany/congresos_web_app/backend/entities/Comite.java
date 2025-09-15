@@ -9,16 +9,24 @@ package com.mycompany.congresos_web_app.backend.entities;
  * @author antho
  */
 public class Comite {
-    private final int ID_COMITE;
-    private final String ID_USUARIO;
-    private final String ID_CONGRESO;
+    private int ID_COMITE;
+    private String ID_USUARIO;
+    private String ID_CONGRESO;
 
-    public Comite(int ID_COMITE, String ID_USUARIO, String ID_CONGRESO) {
+    public void setID_COMITE(int ID_COMITE) {
         this.ID_COMITE = ID_COMITE;
+    }
+
+    public void setID_USUARIO(String ID_USUARIO) {
         this.ID_USUARIO = ID_USUARIO;
+    }
+
+    public void setID_CONGRESO(String ID_CONGRESO) {
         this.ID_CONGRESO = ID_CONGRESO;
     }
 
+    
+    
     public int getID_COMITE() {
         return ID_COMITE;
     }

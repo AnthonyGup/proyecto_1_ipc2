@@ -4,6 +4,7 @@
  */
 package com.mycompany.congresos_web_app.backend.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,28 +12,41 @@ import java.util.Date;
  * @author antho
  */
 public class Inscripcion {
-    private final int ID_INSCRIPCION;
-    private final Date FECHA_PAGO;
-    private final double MONTO;
-    private final String ID_PARTICIPANTE;
-    private final String ID_CONGRESO;
+    private int ID_INSCRIPCION;
+    private LocalDate FECHA_PAGO;
+    private double MONTO;
+    private String ID_PARTICIPANTE;
+    private String ID_CONGRESO;
 
-    public Inscripcion(int ID_INSCRIPCION, Date FECHA_PAGO, double MONTO, String ID_PARTICIPANTE, String ID_CONGRESO) {
+    public void setID_INSCRIPCION(int ID_INSCRIPCION) {
         this.ID_INSCRIPCION = ID_INSCRIPCION;
+    }
+
+    public void setFECHA_PAGO(LocalDate FECHA_PAGO) {
         this.FECHA_PAGO = FECHA_PAGO;
+    }
+
+    public void setMONTO(double MONTO) {
         this.MONTO = MONTO;
+    }
+
+    public void setID_PARTICIPANTE(String ID_PARTICIPANTE) {
         this.ID_PARTICIPANTE = ID_PARTICIPANTE;
+    }
+
+    public void setID_CONGRESO(String ID_CONGRESO) {
         this.ID_CONGRESO = ID_CONGRESO;
+    }
+
+    
+    
+    public LocalDate getFECHA_PAGO() {
+        return FECHA_PAGO;
     }
 
     public int getID_INSCRIPCION() {
         return ID_INSCRIPCION;
     }
-
-    public Date getFECHA_PAGO() {
-        return FECHA_PAGO;
-    }
-
     public double getMONTO() {
         return MONTO;
     }

@@ -4,44 +4,31 @@
  */
 package com.mycompany.congresos_web_app.backend.crud;
 
-import com.mycompany.congresos_web_app.backend.db.DBConnectionSingleton;
 import com.mycompany.congresos_web_app.backend.entities.Comite;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
  * @author antho
  */
-public class ComiteDAO implements Crud<Comite> {
+public class ComiteDAO extends Crud<Comite> {
 
-    private Connection CONNECTION = DBConnectionSingleton.getInstance().getConnection();
+    public ComiteDAO() {
+        super("comite_cientifico", "id_comite");
+    }
     
     @Override
     public boolean create(Comite entidad) throws SQLException {
-        String sql = "INSERT INTO usuario (id_comite, id_usuario, id_congreso) VALUES (?,?,?)";
+        String sql = "INSERT INTO comite_cientifico (id_usuario, id_congreso) VALUES (?,?)";
         
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setInt(1, entidad.getID_COMITE());
-        stmt.setString(2, entidad.getID_USUARIO());
-        stmt.setString(3, entidad.getID_CONGRESO());
+        stmt.setString(1, entidad.getID_USUARIO());
+        stmt.setString(2, entidad.getID_CONGRESO());
         
         int filasCreadas = stmt.executeUpdate();
         return filasCreadas > 0;
-    }   
-    
-
-    @Override
-    public Comite read(String id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Comite> readAll(String tabla) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -50,13 +37,14 @@ public class ComiteDAO implements Crud<Comite> {
     }
 
     @Override
-    public boolean delete(String id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Comite obtenerEntidad(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Comite comite = new Comite();
+        
+        comite.setID_COMITE(rs.getInt("id_comite"));
+        comite.setID_USUARIO(rs.getString("id_usuario"));
+        comite.setID_CONGRESO(rs.getString("id_congreso"));
+        
+        return comite;
     }
     
 }

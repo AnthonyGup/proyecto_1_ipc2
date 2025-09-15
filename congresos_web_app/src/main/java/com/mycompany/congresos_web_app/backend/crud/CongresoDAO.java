@@ -4,25 +4,22 @@
  */
 package com.mycompany.congresos_web_app.backend.crud;
 
-import com.mycompany.congresos_web_app.backend.db.DBConnectionSingleton;
 import com.mycompany.congresos_web_app.backend.entities.Congreso;
-import com.mycompany.congresos_web_app.backend.entities.Usuario;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author antho
  */
-public class CongresoDAO implements Crud<Congreso> {
+public class CongresoDAO extends Crud<Congreso> {
 
-    private final Connection CONNECTION = DBConnectionSingleton.getInstance().getConnection();
-    
+    public CongresoDAO() {
+        super("congreso", "id_congreso");
+    }
+
     @Override
     public boolean create(Congreso entidad) throws SQLException {
         String sql = "INSERT INTO congreso (id_congreso, ubicacion, titulo, descripcion, precio, comision, estado, fecha_inicio, id_institucion, id_admin) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -44,50 +41,9 @@ public class CongresoDAO implements Crud<Congreso> {
         return filasCreadas > 0;
     }
     
-
-    @Override
-    public Congreso read(String id) throws SQLException {
-        String sql = "SELECT * FROM congreso WHERE id_congreso = ?";
-
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setString(1, id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            return obtenerEntidad(rs);
-        }
-
-        return null;
-    }
-
-    @Override
-    public List<Congreso> readAll(String tabla) throws SQLException {
-        List<Congreso> congresos = new ArrayList<>();
-        String sql = "SELECT * FROM congreso";
-
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            congresos.add(obtenerEntidad(rs));
-        }
-
-        return congresos;
-    }
-
     @Override
     public boolean update(String id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean delete(String id) throws SQLException {
-        String sql = "DELETE FROM congreso WHERE id_congreso = ?";
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setString(1, id);
-
-        int filasEliminadas = stmt.executeUpdate();
-        return filasEliminadas > 0;
     }
 
     @Override

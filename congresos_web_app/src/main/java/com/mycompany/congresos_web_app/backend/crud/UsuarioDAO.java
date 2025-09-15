@@ -4,28 +4,25 @@
  */
 package com.mycompany.congresos_web_app.backend.crud;
 
-import com.mycompany.congresos_web_app.backend.db.DBConnectionSingleton;
 import com.mycompany.congresos_web_app.backend.entities.Usuario;
 import com.mycompany.congresos_web_app.backend.entities.enums.TipoUsuario;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author antho
  */
-public class UsuarioDAO implements Crud<Usuario> {
+public class UsuarioDAO extends Crud<Usuario> {
 
-    private final Connection CONNECTION = DBConnectionSingleton.getInstance().getConnection();
-
+    public UsuarioDAO() {
+        super("usuario", "correo");
+    }
+    
     @Override
     public boolean create(Usuario entidad) throws SQLException {
-
         String sql = "INSERT INTO usuario (correo, estado, fecha_creacion, password, cartera_digital, rol) VALUES (?,?,?,?,?,?)";
 
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
@@ -42,48 +39,8 @@ public class UsuarioDAO implements Crud<Usuario> {
     }
 
     @Override
-    public Usuario read(String id) throws SQLException {
-        String sql = "SELECT * FROM usuario WHERE correo = ?";
-
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setString(1, id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            return obtenerEntidad(rs);
-        }
-
-        return null;
-    }
-
-    @Override
-    public List<Usuario> readAll(String tabla) throws SQLException {
-        List<Usuario> usuarios = new ArrayList<>();
-        String sql = "SELECT * FROM usuario";
-
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            usuarios.add(obtenerEntidad(rs));
-        }
-
-        return usuarios;
-    }
-
-    @Override
     public boolean update(String id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean delete(String id) throws SQLException {
-        String sql = "DELETE FROM usuario WHERE correo = ?";
-        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
-        stmt.setString(1, id);
-
-        int filasEliminadas = stmt.executeUpdate();
-        return filasEliminadas > 0;
     }
 
     @Override

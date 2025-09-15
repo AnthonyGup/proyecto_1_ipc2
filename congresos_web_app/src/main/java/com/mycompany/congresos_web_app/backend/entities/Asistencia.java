@@ -12,15 +12,24 @@ import java.time.LocalDateTime;
  */
 public class Asistencia {
     
-    private final int ID_ASISTENCIA;
-    private final LocalDateTime FECHA_HORA;
-    private final String ID_ACTIVIDAD;
-    private final String ID_PARTICIPANTE;
+    private int ID_ASISTENCIA;
+    private LocalDateTime FECHA_HORA;
+    private String ID_ACTIVIDAD;
+    private String ID_PARTICIPANTE;
 
-    public Asistencia(int ID_ASISTENCIA, LocalDateTime FECHA_HORA, String ID_ACTIVIDAD, String ID_PARTICIPANTE) {
+    public void setID_ASISTENCIA(int ID_ASISTENCIA) {
         this.ID_ASISTENCIA = ID_ASISTENCIA;
+    }
+
+    public void setFECHA_HORA(LocalDateTime FECHA_HORA) {
         this.FECHA_HORA = FECHA_HORA;
+    }
+
+    public void setID_ACTIVIDAD(String ID_ACTIVIDAD) {
         this.ID_ACTIVIDAD = ID_ACTIVIDAD;
+    }
+
+    public void setID_PARTICIPANTE(String ID_PARTICIPANTE) {
         this.ID_PARTICIPANTE = ID_PARTICIPANTE;
     }
 

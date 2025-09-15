@@ -9,19 +9,33 @@ package com.mycompany.congresos_web_app.backend.entities;
  * @author antho
  */
 public class Salon {
-    private final int ID_SALON;
-    private final String SALON;
-    private final String UBICACION;
-    private final int CAPACIDAD;
-    private final String ID_CONGRESO;
+    private int ID_SALON;
+    private String SALON;
+    private String UBICACION;
+    private int CAPACIDAD;
+    private String ID_CONGRESO;
 
-    public Salon(int ID_SALON, String SALON, String UBICACION, int CAPACIDAD, String ID_CONGRESO) {
+    public void setID_SALON(int ID_SALON) {
         this.ID_SALON = ID_SALON;
+    }
+
+    public void setSALON(String SALON) {
         this.SALON = SALON;
+    }
+
+    public void setUBICACION(String UBICACION) {
         this.UBICACION = UBICACION;
+    }
+
+    public void setCAPACIDAD(int CAPACIDAD) {
         this.CAPACIDAD = CAPACIDAD;
+    }
+
+    public void setID_CONGRESO(String ID_CONGRESO) {
         this.ID_CONGRESO = ID_CONGRESO;
     }
+
+    
 
     public int getID_SALON() {
         return ID_SALON;

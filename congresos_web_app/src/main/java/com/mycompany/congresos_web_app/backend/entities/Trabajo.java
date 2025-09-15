@@ -12,23 +12,39 @@ import com.mycompany.congresos_web_app.backend.entities.enums.TipoTrabajo;
  */
 public class Trabajo {
     
-    private final int ID_TRABAJO;
-    private final TipoTrabajo TIPO;
-    private final String DESCRIPCION;
-    private final String TITULO;
+    private int ID_TRABAJO;
+    private TipoTrabajo TIPO;
+    private String DESCRIPCION;
+    private String TITULO;
     private boolean estado = true;
-    private final String ID_PARTICIPANTE;
-    private final int ID_CONVOCATORIA;
+    private String ID_PARTICIPANTE;
+    private int ID_CONVOCATORIA;
 
-    public Trabajo(int ID_TRABAJO, TipoTrabajo TIPO, String DESCRIPCION, String TITULO, String ID_PARTICIPANTE, int ID_CONVOCATORIA) {
+    public void setID_TRABAJO(int ID_TRABAJO) {
         this.ID_TRABAJO = ID_TRABAJO;
+    }
+
+    public void setTIPO(TipoTrabajo TIPO) {
         this.TIPO = TIPO;
+    }
+
+    public void setDESCRIPCION(String DESCRIPCION) {
         this.DESCRIPCION = DESCRIPCION;
+    }
+
+    public void setTITULO(String TITULO) {
         this.TITULO = TITULO;
+    }
+
+    public void setID_PARTICIPANTE(String ID_PARTICIPANTE) {
         this.ID_PARTICIPANTE = ID_PARTICIPANTE;
+    }
+
+    public void setID_CONVOCATORIA(int ID_CONVOCATORIA) {
         this.ID_CONVOCATORIA = ID_CONVOCATORIA;
     }
 
+    
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
@@ -59,8 +75,5 @@ public class Trabajo {
 
     public int getID_CONVOCATORIA() {
         return ID_CONVOCATORIA;
-    }
-    
-    
-    
+    }    
 }

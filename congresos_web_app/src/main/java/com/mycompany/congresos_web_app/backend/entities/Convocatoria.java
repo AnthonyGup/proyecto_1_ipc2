@@ -4,7 +4,7 @@
  */
 package com.mycompany.congresos_web_app.backend.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -12,20 +12,35 @@ import java.util.Date;
  */
 public class Convocatoria {
     
-    private final int ID_CONVOCATORIA;
-    private final String TITULO;
+    private int ID_CONVOCATORIA;
+    private String TITULO;
     private boolean estado = true;
-    private final Date FECHA_INICIO; 
-    private final Date FECHA_FIN;
-    private final String ID_CONGRESO;
+    private LocalDate FECHA_INICIO; 
+    private LocalDate FECHA_FIN;
+    private String ID_CONGRESO;
 
-    public Convocatoria(int ID_CONVOCATORIA, String TITULO, Date FECHA_INICIO, Date FECHA_FIN, String ID_CONGRESO) {
+    public void setID_CONVOCATORIA(int ID_CONVOCATORIA) {
         this.ID_CONVOCATORIA = ID_CONVOCATORIA;
+    }
+
+    public void setTITULO(String TITULO) {
         this.TITULO = TITULO;
+    }
+
+    public void setFECHA_INICIO(LocalDate FECHA_INICIO) {
         this.FECHA_INICIO = FECHA_INICIO;
+    }
+
+    public void setFECHA_FIN(LocalDate FECHA_FIN) {
         this.FECHA_FIN = FECHA_FIN;
+    }
+
+    public void setID_CONGRESO(String ID_CONGRESO) {
         this.ID_CONGRESO = ID_CONGRESO;
     }
+    
+    
+    
 
     public void setEstado(boolean estado) {
         this.estado = estado;
@@ -43,11 +58,11 @@ public class Convocatoria {
         return estado;
     }
 
-    public Date getFECHA_INICIO() {
+    public LocalDate getFECHA_INICIO() {
         return FECHA_INICIO;
     }
 
-    public Date getFECHA_FIN() {
+    public LocalDate getFECHA_FIN() {
         return FECHA_FIN;
     }
 
