@@ -5,10 +5,9 @@
 package com.mycompany.congresos_web_app.backend.crud;
 
 import com.mycompany.congresos_web_app.backend.db.DBConnectionSingleton;
-import com.mycompany.congresos_web_app.backend.entities.Usuario;
+import com.mycompany.congresos_web_app.backend.entities.Institucion;
 import com.mycompany.congresos_web_app.backend.entities.enums.TipoUsuario;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,31 +18,30 @@ import java.util.List;
  *
  * @author antho
  */
-public class UsuarioDAO implements Crud<Usuario> {
-
+public class InstitucionDAO implements Crud<Institucion> {
+    
     private final Connection CONNECTION = DBConnectionSingleton.getInstance().getConnection();
 
     @Override
-    public boolean create(Usuario entidad) throws SQLException {
+    public boolean create(Institucion entidad) throws SQLException {
 
-        String sql = "INSERT INTO usuario (correo, estado, fecha_creacion, password, cartera_digital, rol) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO institucion (id_institucion, ubicacion, nombre, descripcion, estado) VALUES (?,?,?,?,?)";
 
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
 
-        stmt.setString(1, entidad.getCORREO());
-        stmt.setBoolean(2, entidad.isEstado());
-        stmt.setDate(3, Date.valueOf(entidad.getFECHA_CREACION()));
-        stmt.setString(4, entidad.getPASSWORD());
-        stmt.setDouble(5, entidad.getCartera_digital());
-        stmt.setString(6, entidad.getROL().name());
+        stmt.setInt(1, entidad.getID_INSTITUCION());
+        stmt.setString(2, entidad.getUBICACION());
+        stmt.setString(3, entidad.getNOMBRE());
+        stmt.setString(4, entidad.getDESCRIPCION());
+        stmt.setBoolean(5, entidad.isEstado());
 
         int filasCreadas = stmt.executeUpdate();
         return filasCreadas > 0;
     }
 
     @Override
-    public Usuario read(String id) throws SQLException {
-        String sql = "SELECT * FROM usuario WHERE correo = ?";
+    public Institucion read(String id) throws SQLException {
+        String sql = "SELECT * FROM institucion WHERE id_institucion = ?";
 
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
         stmt.setString(1, id);
@@ -57,18 +55,18 @@ public class UsuarioDAO implements Crud<Usuario> {
     }
 
     @Override
-    public List<Usuario> readAll(String tabla) throws SQLException {
-        List<Usuario> usuarios = new ArrayList<>();
-        String sql = "SELECT * FROM usuario";
+    public List<Institucion> readAll(String tabla) throws SQLException {
+        List<Institucion> institucion = new ArrayList<>();
+        String sql = "SELECT * FROM institucion";
 
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            usuarios.add(obtenerEntidad(rs));
+            institucion.add(obtenerEntidad(rs));
         }
 
-        return usuarios;
+        return institucion;
     }
 
     @Override
@@ -78,7 +76,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        String sql = "DELETE FROM usuario WHERE correo = ?";
+        String sql = "DELETE FROM institucion WHERE id_institucion = ?";
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
         stmt.setString(1, id);
 
@@ -87,17 +85,15 @@ public class UsuarioDAO implements Crud<Usuario> {
     }
 
     @Override
-    public Usuario obtenerEntidad(ResultSet rs) throws SQLException {
+    public Institucion obtenerEntidad(ResultSet rs) throws SQLException {
+        Institucion institucion = new Institucion();
+        
+        institucion.setID_INSTITUCION(rs.getInt("id_institucion"));
+        institucion.setUBICACION(rs.getString("ubicacion"));
+        institucion.setNOMBRE(rs.getString("nombre"));
+        institucion.setDESCRIPCION(rs.getString("descripcion"));
+        institucion.setEstado(rs.getBoolean("estado"));
 
-        Usuario usuario = new Usuario();
-        usuario.setCORREO(rs.getString("correo"));
-        usuario.setEstado(rs.getBoolean("estado"));
-        usuario.setFECHA_CREACION(rs.getDate("fecha_creacion").toLocalDate());
-        usuario.setPASSWORD(rs.getString("password"));
-        usuario.setCartera_digital(rs.getDouble("cartera_digital"));
-        usuario.setROL(TipoUsuario.valueOf(rs.getString("rol"))); // Enum
-
-        return usuario;
+        return institucion;
     }
-
 }

@@ -6,28 +6,34 @@ package com.mycompany.congresos_web_app.backend.entities;
  */
 public class Participante {
     
-    private final String ID_PERSONAL;
-    private final String NOMBRE_COMPLETO;
-    private final String TELEFONO;
-    private final String ORGANIZACION;
-    private final String ID_USUARIO;
+    private String ID_PERSONAL;
+    private String NOMBRE_COMPLETO;
+    private String TELEFONO;
+    private String ORGANIZACION;
+    private String ID_USUARIO;
 
-    /**
-     * Inicializacion de todos los atributos que conforman al participante;
-     * @param ID_PERSONAL codigo de identificacion personal del participante
-     * @param NOMBRE_COMPLETO nombre del participante
-     * @param TELEFONO numero de telefono, puede incluir codigos de pais
-     * @param ORGANIZACION nombre de la organizacion de la que proviene el participante
-     * @param ID_USUARIO codigo de la cuenta de usuario del participante
-     */
-    public Participante(String ID_PERSONAL, String NOMBRE_COMPLETO, String TELEFONO, String ORGANIZACION, String ID_USUARIO) {
+    public void setID_PERSONAL(String ID_PERSONAL) {
         this.ID_PERSONAL = ID_PERSONAL;
+    }
+
+    public void setNOMBRE_COMPLETO(String NOMBRE_COMPLETO) {
         this.NOMBRE_COMPLETO = NOMBRE_COMPLETO;
+    }
+
+    public void setTELEFONO(String TELEFONO) {
         this.TELEFONO = TELEFONO;
+    }
+
+    public void setORGANIZACION(String ORGANIZACION) {
         this.ORGANIZACION = ORGANIZACION;
+    }
+
+    public void setID_USUARIO(String ID_USUARIO) {
         this.ID_USUARIO = ID_USUARIO;
     }
 
+    
+    
     public String getID_PERSONAL() {
         return ID_PERSONAL;
     }

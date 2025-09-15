@@ -13,28 +13,54 @@ import java.time.LocalTime;
  */
 public class Actividad {
     
-    private final String ID_TRABAJO;
-    private final String NOMBRE;
-    private final String DESCRIPCION;
+    private  String ID_TRABAJO;
+    private  String NOMBRE;
+    private  String DESCRIPCION;
     private int cupo_maximo;
-    private final TipoActividad TIPO;
-    private final LocalTime HORA_INICIO;
-    private final LocalTime HORA_FIN;
-    private final String ID_ENCARGADO;
-    private final String ID_CONGRESO;
-    private final int ID_SALON;
+    private  TipoActividad TIPO;
+    private  LocalTime HORA_INICIO;
+    private  LocalTime HORA_FIN;
+    private  String ID_ENCARGADO;
+    private  String ID_CONGRESO;
+    private  int ID_SALON;
 
-    public Actividad(String ID_TRABAJO, String NOMBRE, String DESCRIPCION, TipoActividad TIPO, LocalTime HORA_INICIO, LocalTime HORA_FIN, String ID_ENCARGADO, String ID_CONGRESO, int ID_SALON) {
+    public void setID_TRABAJO(String ID_TRABAJO) {
         this.ID_TRABAJO = ID_TRABAJO;
+    }
+
+    public void setNOMBRE(String NOMBRE) {
         this.NOMBRE = NOMBRE;
+    }
+
+    public void setDESCRIPCION(String DESCRIPCION) {
         this.DESCRIPCION = DESCRIPCION;
+    }
+
+    public void setTIPO(TipoActividad TIPO) {
         this.TIPO = TIPO;
+    }
+
+    public void setHORA_INICIO(LocalTime HORA_INICIO) {
         this.HORA_INICIO = HORA_INICIO;
+    }
+
+    public void setHORA_FIN(LocalTime HORA_FIN) {
         this.HORA_FIN = HORA_FIN;
+    }
+
+    public void setID_ENCARGADO(String ID_ENCARGADO) {
         this.ID_ENCARGADO = ID_ENCARGADO;
+    }
+
+    public void setID_CONGRESO(String ID_CONGRESO) {
         this.ID_CONGRESO = ID_CONGRESO;
+    }
+
+    public void setID_SALON(int ID_SALON) {
         this.ID_SALON = ID_SALON;
     }
+
+    
 
     public void setCupo_maximo(int cupo_maximo) {
         this.cupo_maximo = cupo_maximo;

@@ -10,28 +10,33 @@ package com.mycompany.congresos_web_app.backend.entities;
  */
 public class Institucion {
     
-    private final String ID_INSTITUCION; 
-    private final String UBICACION;
-    private final String NOMBRE;
-    private final String DESCRIPCION;
+    private int ID_INSTITUCION; 
+    private String UBICACION;
+    private String NOMBRE;
+    private String DESCRIPCION;
     private boolean estado = true;
 
-    /**
-     * Construuctor que inicia los atributos necesarios para la institucion
-     * @param ID_INSTITUCION Codigo de identificacion de la institucion
-     * @param UBICACION ubicacion de la institucion
-     * @param NOMBRE el nombre de la institucion
-     * @param DESCRIPCION descripcion corta de la descripcion y su funcionalidad
-     */
-    public Institucion(String ID_INSTITUCION, String UBICACION, String NOMBRE, String DESCRIPCION) {
+    public void setID_INSTITUCION(int ID_INSTITUCION) {
         this.ID_INSTITUCION = ID_INSTITUCION;
+    }
+
+    public void setUBICACION(String UBICACION) {
         this.UBICACION = UBICACION;
+    }
+
+    public void setNOMBRE(String NOMBRE) {
         this.NOMBRE = NOMBRE;
+    }
+
+    public void setDESCRIPCION(String DESCRIPCION) {
         this.DESCRIPCION = DESCRIPCION;
     }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
     
-    public String getID_INSTITUCION() {
+    public int getID_INSTITUCION() {
         return ID_INSTITUCION;
     }
 

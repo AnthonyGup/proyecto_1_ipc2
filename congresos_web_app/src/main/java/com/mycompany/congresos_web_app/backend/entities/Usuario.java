@@ -5,7 +5,7 @@
 package com.mycompany.congresos_web_app.backend.entities;
 
 import com.mycompany.congresos_web_app.backend.entities.enums.TipoUsuario;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,28 +13,31 @@ import java.util.Date;
  */
 public class Usuario {
     
-    private final String CORREO;
-    private final String PASSWORD;
-    private final TipoUsuario ROL;
-    private final Date FECHA_CREACION;
+    private  String CORREO;
+    private  String PASSWORD;
+    private  TipoUsuario ROL;
+    private  LocalDate FECHA_CREACION;
     private double cartera_digital;
     private boolean estado = true; //estado activo
-
-    /**
-     * Este constructor inicia todo aquello que es constante en el usuario
-     * @param CORREO correo electronico
-     * @param PASSWORD la contrasenia ya cifrada
-     * @param ROL el rol que jugara el usuario registrado
-     * @param fecha_creacion la fecha de creacion
-     */
-    public Usuario(String CORREO, String PASSWORD, TipoUsuario ROL, Date fecha_creacion) {
+    
+    
+    public void setCORREO(String CORREO) {
         this.CORREO = CORREO;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
         this.PASSWORD = PASSWORD;
+    }
+
+    public void setROL(TipoUsuario ROL) {
         this.ROL = ROL;
-        this.FECHA_CREACION = fecha_creacion;
     }
 
     //getters y setters
+    public void setFECHA_CREACION(LocalDate FECHA_CREACION) {
+        this.FECHA_CREACION = FECHA_CREACION;
+    }
+
     public void setCartera_digital(double cartera_digital) {
         this.cartera_digital = cartera_digital;
     }
@@ -59,7 +62,7 @@ public class Usuario {
         return cartera_digital;
     }
 
-    public Date getFECHA_CREACION() {
+    public LocalDate getFECHA_CREACION() {
         return FECHA_CREACION;
     }
 

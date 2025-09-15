@@ -4,6 +4,7 @@
  */
 package com.mycompany.congresos_web_app.backend.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,42 +12,55 @@ import java.util.Date;
  * @author antho
  */
 public class Congreso {
-    private final String ID_CONGRESO;
-    private final String TITULO;
-    private final String UBICACION;
-    private final String DESCRIPCION;
-    private final String ID_ADMIN;
-    private final String ID_INSTITUCION;
-    private final Date FECHA_INICIO;
-    private final double COMISION;
-    private final double PRECIO;
+    private String ID_CONGRESO;
+    private String TITULO;
+    private String UBICACION;
+    private String DESCRIPCION;
+    private String ID_ADMIN;
+    private int ID_INSTITUCION;
+    private LocalDate FECHA_INICIO;
+    private double COMISION;
+    private double PRECIO;
     private boolean estado = true;
-
-    /**
-     * Constructor qu einicia todos los atributos quue conforman al congreso
-     * @param ID_CONGRESO codigo de identificacion unica del congreso
-     * @param TITULO El nombre que llevara el congreso
-     * @param UBICACION Lugar donde se llevara a cavo el congreso
-     * @param DESCRIPCION Corta descripcion del congreso
-     * @param ID_ADMIN Codigo del usuario que administra este congreso
-     * @param ID_INSTITUCION Codigo de la institucion a la que pertenece el congreso
-     * @param COMISION Comision que cobrara la aplicacion por cada congreso
-     * @param PRECIO Precio de cada congreso
-     * @param FECHA_INICIO  La fecha en la qu einicia
-     */
-    public Congreso(String ID_CONGRESO, String TITULO, String UBICACION, String DESCRIPCION, String ID_ADMIN, String ID_INSTITUCION, double COMISION, double PRECIO, Date FECHA_INICIO) {
+    
+    
+    public void setID_CONGRESO(String ID_CONGRESO) {
         this.ID_CONGRESO = ID_CONGRESO;
+    }
+
+    public void setTITULO(String TITULO) {
         this.TITULO = TITULO;
+    }
+
+    public void setUBICACION(String UBICACION) {
         this.UBICACION = UBICACION;
+    }
+
+    public void setDESCRIPCION(String DESCRIPCION) {
         this.DESCRIPCION = DESCRIPCION;
+    }
+
+    public void setID_ADMIN(String ID_ADMIN) {
         this.ID_ADMIN = ID_ADMIN;
+    }
+
+    public void setID_INSTITUCION(int ID_INSTITUCION) {
         this.ID_INSTITUCION = ID_INSTITUCION;
-        this.COMISION = COMISION;
-        this.PRECIO = PRECIO;
+    }
+
+    public void setFECHA_INICIO(LocalDate FECHA_INICIO) {
         this.FECHA_INICIO = FECHA_INICIO;
     }
 
+    public void setCOMISION(double COMISION) {
+        this.COMISION = COMISION;
+    }
+
     //Setters de los que no son constantes
+    public void setPRECIO(double PRECIO) {
+        this.PRECIO = PRECIO;
+    }
+
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
@@ -72,7 +86,7 @@ public class Congreso {
         return ID_ADMIN;
     }
 
-    public String getID_INSTITUCION() {
+    public int getID_INSTITUCION() {
         return ID_INSTITUCION;
     }
 
@@ -88,7 +102,7 @@ public class Congreso {
         return estado;
     }
 
-    public Date getFECHA_INICIO() {
+    public LocalDate getFECHA_INICIO() {
         return FECHA_INICIO;
     }
     
