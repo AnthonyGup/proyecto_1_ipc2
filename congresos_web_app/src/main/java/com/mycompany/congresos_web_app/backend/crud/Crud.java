@@ -42,8 +42,29 @@ public abstract class Crud<T> {
      * @return el objeto ya creado y leido de la base de datos
      * @throws java.sql.SQLException
      */
-    public T read(String id) throws SQLException {
+    public T readByPk(String id) throws SQLException {
         String sql = "SELECT * FROM "+ tabla +" WHERE "+ codigo +" = ?";
+
+        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
+        stmt.setString(1, id);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            return obtenerEntidad(rs);
+        }
+
+        return null;
+    }
+    
+    /**
+     * 
+     * @param id
+     * @param columna
+     * @return 
+     * @throws java.sql.SQLException 
+     */
+    public T readByColumn(String id, String columna) throws SQLException {
+        String sql = "SELECT * FROM "+ tabla +" WHERE "+ columna +" = ?";
 
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
         stmt.setString(1, id);
