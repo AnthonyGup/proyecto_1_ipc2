@@ -37,11 +37,6 @@ public class ConvocatoriaDAO extends Crud<Convocatoria> {
     }
 
     @Override
-    public boolean update(String id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Convocatoria obtenerEntidad(ResultSet rs) throws SQLException {
         Convocatoria convocatoria = new Convocatoria();
         

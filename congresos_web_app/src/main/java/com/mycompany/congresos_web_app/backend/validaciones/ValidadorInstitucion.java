@@ -17,6 +17,17 @@ public class ValidadorInstitucion extends Validador {
 
     private final Institucion INSTITUCION = new Institucion();
 
+    public ValidadorInstitucion() {
+    }
+    
+    public ValidadorInstitucion(String nombre, String ubicacion, String descripcion, boolean estado) throws ValidacionException, SQLException {
+        validarNombre(nombre);
+        validarUbicacion(ubicacion);
+        validarDescripcion(descripcion);
+        guardarEstado(estado);
+    }
+    
+
     public void validarUbicacion(String ubicacion) throws ValidacionException {
         if (esLongitudValida(ubicacion, 200)) {
             INSTITUCION.setUbicacion(ubicacion);

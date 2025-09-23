@@ -35,11 +35,7 @@ public class DiplomaDAO extends Crud<Diploma> {
         return filasCreadas > 0;
     }
 
-    @Override
-    public boolean update(String id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public Diploma obtenerEntidad(ResultSet rs) throws SQLException {
         Diploma diploma = new Diploma();

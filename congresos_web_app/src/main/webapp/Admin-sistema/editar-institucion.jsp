@@ -20,7 +20,7 @@
 
                     <h4 class="mb-3">Editar institución</h4>
 
-                    <form action="ActualizarInstitucionServlet" method="post">
+                    <form action="ActualizarInstitucionServlet?institucion=${institucion.nombre}" method="post">
 
                         <!-- Nombre (visible como texto plano, no editable) -->
                         <div class="mb-3">

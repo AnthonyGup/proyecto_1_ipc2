@@ -21,7 +21,6 @@
 
                     <h4 class="mb-3">Buscar usuario</h4>
 
-                    <!-- Formulario de búsqueda -->
                     <form action="${pageContext.request.contextPath}/DriverUsuarioAdmin" method="get">
                         <div class="mb-3">
                             <label for="correo" class="form-label">Correo electrónico</label>
@@ -36,7 +35,6 @@
                         </button>
                     </form>
 
-                    <!-- Card con resultado -->
                     <c:if test="${not empty usuario}">
                         <div class="card bg-dark text-light border-secondary shadow-sm mt-4" style="background-color: rgba(255,255,255,0.05);">
                             <div class="card-body">
@@ -50,18 +48,15 @@
                                     </c:choose>
                                 </p>
 
-                                <!-- Formulario para editar estado y tipo -->
-                                <form action="ActualizarUsuarioServlet" method="post">
+                                <form action="EditorUsuariosServlet?usuario=${usuario.CORREO}" method="post">
                                     <input type="hidden" name="id" value="${usuario.CORREO}" />
 
-                                    <!-- Estado -->
                                     <div class="form-check form-switch mb-3">
                                         <input class="form-check-input" type="checkbox" name="activo"
                                                ${usuario.estado ? 'checked' : ''}>
                                         <label class="form-check-label text-light">Activo</label>
                                     </div>
 
-                                    <!-- Tipo de usuario -->
                                     <div class="mb-3">
                                         <label for="tipo" class="form-label">Tipo de usuario</label>
                                         <select id="tipo" name="tipo"

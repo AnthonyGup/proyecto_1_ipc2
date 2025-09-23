@@ -37,11 +37,6 @@ public class ParticipanteDAO extends Crud<Participante> {
     }
 
     @Override
-    public boolean update(String id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Participante obtenerEntidad(ResultSet rs) throws SQLException {
         Participante participante = new Participante();
         

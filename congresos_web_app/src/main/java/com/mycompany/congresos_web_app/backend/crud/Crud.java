@@ -6,9 +6,15 @@ package com.mycompany.congresos_web_app.backend.crud;
 
 import com.mycompany.congresos_web_app.backend.db.DBConnectionSingleton;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,10 +106,50 @@ public abstract class Crud<T> {
     /**
      * Funcion que actualiza un dato de la base de datos basada en su primary key (logica extra en cada implementacion)
      * @param id identificacion del registro que queremos actualizar
+     * @param columna columna que se quier actualizar
+     * @param valor el valor que se va a actualizar
+     * @param tipo el tipo del valor que se actualiza
      * @return true si se logra actualizar correctamente, fase si no
      * @throws java.sql.SQLException
      */
-    public abstract boolean update(String id) throws SQLException;
+    public boolean update(String id, String columna, Object valor, String tipo) throws SQLException {
+        String sql = "UPDATE " + tabla + " SET " + columna + " = ? WHERE " + codigo + " = ?";
+        PreparedStatement stmt = CONNECTION.prepareStatement(sql);
+        switch (tipo) {
+            case "int" -> {
+                int entero = (int) valor;
+                stmt.setInt(1, entero);
+            }
+            case "date" -> {
+                LocalDate fecha = (LocalDate) valor;
+                stmt.setDate(1, Date.valueOf(fecha));
+            }
+            case "time" -> {
+                LocalTime time = (LocalTime) valor;
+                stmt.setTime(1, Time.valueOf(time));
+            }
+            case "dateTime" -> {   
+                LocalDateTime dateTime = (LocalDateTime) valor;
+                stmt.setTimestamp(1, Timestamp.valueOf(dateTime));
+            }
+            case "double" -> {
+                double doble = (double) valor;
+                stmt.setDouble(1, doble);
+            }
+            case "string" -> {
+                String string = (String) valor;
+                stmt.setString(1, string);
+            }
+            case "boolean" -> {
+                boolean boleano = (boolean) valor;
+                stmt.setBoolean(1, boleano);
+            }
+            default -> throw new IllegalArgumentException("Tipo no soportado: " + tipo);
+        }
+        stmt.setString(2, id);
+        
+        return stmt.executeUpdate() > 0;
+    }
     
     /**
      * Metodo que elimina un registro de la base de datos, mediante su primary key

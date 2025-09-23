@@ -19,6 +19,10 @@ import java.time.LocalDate;
 public class ValidadorUsuario extends Validador {
     
     private final Usuario usuario = new Usuario();
+
+    public ValidadorUsuario() {
+    }
+    
     
     public ValidadorUsuario(String correo, boolean estado, String password, String valor, String rol) throws ValidacionException, SQLException, SQLException {
         validarCorreo(correo);
