@@ -5,6 +5,7 @@
 package com.mycompany.congresos_web_app.backend.crud;
 
 import com.mycompany.congresos_web_app.backend.entities.Actividad;
+import com.mycompany.congresos_web_app.backend.entities.enums.EstadosActividad;
 import com.mycompany.congresos_web_app.backend.entities.enums.TipoActividad;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,20 +24,21 @@ public class ActividadDAO extends Crud<Actividad> {
 
     @Override
     public boolean create(Actividad entidad) throws SQLException {
-        String sql = "INSERT INTO actividad (id_actividad, nombre, descripcion, cupo_maximo, tipo, hora_inicio, hora_fin, id_encargado, id_congreso, id_salon) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO actividad (id_actividad, nombre, descripcion, cupo_maximo, tipo, hora_inicio, hora_fin, id_encargado, id_congreso, id_salon, estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
         
         stmt.setString(1, entidad.getId_actividad());
-        stmt.setString(2, entidad.getNOMBRE());
-        stmt.setString(3, entidad.getDESCRIPCION());
+        stmt.setString(2, entidad.getNombre());
+        stmt.setString(3, entidad.getDescripcion());
         stmt.setInt(4, entidad.getCupo_maximo());
-        stmt.setString(5, entidad.getTIPO().name());
-        stmt.setTime(6, Time.valueOf(entidad.getHORA_INICIO()));
-        stmt.setTime(7, Time.valueOf(entidad.getHORA_FIN()));
-        stmt.setString(8, entidad.getID_ENCARGADO());
-        stmt.setString(9, entidad.getID_CONGRESO());
-        stmt.setInt(10, entidad.getID_SALON());
+        stmt.setString(5, entidad.getTipo().name());
+        stmt.setTime(6, Time.valueOf(entidad.getHora_inicio()));
+        stmt.setTime(7, Time.valueOf(entidad.getHora_fin()));
+        stmt.setString(8, entidad.getId_encargado());
+        stmt.setString(9, entidad.getId_congreso());
+        stmt.setInt(10, entidad.getId_salon());
+        stmt.setString(10, entidad.getEstado().name());
         
         int filasCreadas = stmt.executeUpdate();
         return filasCreadas > 0;
@@ -52,15 +54,16 @@ public class ActividadDAO extends Crud<Actividad> {
         Actividad actividad = new Actividad();
         
         actividad.setId_actividad(rs.getString("id_actividad"));
-        actividad.setNOMBRE(rs.getString("nombre"));
-        actividad.setDESCRIPCION(rs.getString("descripcion"));
+        actividad.setNombre(rs.getString("nombre"));
+        actividad.setDescripcion(rs.getString("descripcion"));
         actividad.setCupo_maximo(rs.getInt("cupo_maximo"));
-        actividad.setTIPO(TipoActividad.valueOf(rs.getString("tipo")));
-        actividad.setHORA_INICIO(rs.getTime("hora_inicio").toLocalTime());
-        actividad.setHORA_FIN(rs.getTime("hora_fin").toLocalTime());
-        actividad.setID_ENCARGADO(rs.getString("id_encargado"));
-        actividad.setID_CONGRESO(rs.getString("id_congreso"));
-        actividad.setID_SALON(rs.getInt("id_salon"));
+        actividad.setTipo(TipoActividad.valueOf(rs.getString("tipo")));
+        actividad.setHora_inicio(rs.getTime("hora_inicio").toLocalTime());
+        actividad.setHora_fin(rs.getTime("hora_fin").toLocalTime());
+        actividad.setId_encargado(rs.getString("id_encargado"));
+        actividad.setId_congreso(rs.getString("id_congreso"));
+        actividad.setId_salon(rs.getInt("id_salon"));
+        actividad.setEstado(EstadosActividad.valueOf(rs.getString("estado")));
         
         return actividad;
     }

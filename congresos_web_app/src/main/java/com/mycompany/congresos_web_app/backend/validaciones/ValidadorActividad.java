@@ -35,14 +35,14 @@ public class ValidadorActividad extends Validador {
         if (!esLongitudValida(nombre, 150)) {
             throw new ValidacionException("Nombre muy largo");
         }
-        ACTIVIDAD.setNOMBRE(nombre);
+        ACTIVIDAD.setNombre(nombre);
     }
     
     public void validarDescripcion(String descripcion) throws ValidacionException {
         if (!esLongitudValida(descripcion, 500)) {
             throw new ValidacionException("Descripcion muy larga");
         }
-        ACTIVIDAD.setDESCRIPCION(descripcion);
+        ACTIVIDAD.setDescripcion(descripcion);
     }
     
     public void validarCupoMaximo(int cupo) {
@@ -50,21 +50,21 @@ public class ValidadorActividad extends Validador {
     }
     
     public void validarTipo(String tipo) {
-        ACTIVIDAD.setTIPO(TipoActividad.valueOf(tipo));
+        ACTIVIDAD.setTipo(TipoActividad.valueOf(tipo));
     }
     
     public void validarHoraInicioo(LocalTime time) throws ValidacionException {
         if (!esHoraValida(time)) {
             throw new ValidacionException("Hora invalida");
         }
-        ACTIVIDAD.setHORA_INICIO(time);
+        ACTIVIDAD.setHora_inicio(time);
     }
     
     public void validarHoraFin(LocalTime time) throws ValidacionException {
         if (!esHoraValida(time)) {
             throw new ValidacionException("Hora invalida");
         }
-        ACTIVIDAD.setHORA_FIN(time);
+        ACTIVIDAD.setHora_fin(time);
     }
     
     public void validarEncargado(String encargado) throws ValidacionException, SQLException {
@@ -74,14 +74,14 @@ public class ValidadorActividad extends Validador {
         if (!existeEsteRegistro(encargado, new UsuarioDAO())) {
             throw new ValidacionException("Este usuario no existe");
         }
-        ACTIVIDAD.setID_ENCARGADO(encargado);
+        ACTIVIDAD.setId_encargado(encargado);
     }
     
     public void validarCongreso(String congreso) throws ValidacionException {
         if (!esCodigoValido(congreso, "CON-", 12)) {
             throw new ValidacionException("Codigo incorrecto");
         }
-        ACTIVIDAD.setID_ENCARGADO(congreso);
+        ACTIVIDAD.setId_congreso(congreso);
     }
     
     public void validarSalon(int salon) throws ValidacionException, SQLException {

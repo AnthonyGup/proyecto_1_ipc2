@@ -21,9 +21,10 @@ public abstract class Crud<T> {
     
     protected final String tabla;
     protected final String codigo;
-    protected final Connection CONNECTION = DBConnectionSingleton.getInstance().getConnection();
+    protected final Connection CONNECTION;
 
     public Crud(String tabla, String codigo) {
+        this.CONNECTION = DBConnectionSingleton.getInstance().getConnection();
         this.tabla = tabla;
         this.codigo = codigo;
     }

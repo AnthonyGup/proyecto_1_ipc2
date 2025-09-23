@@ -19,24 +19,27 @@ public class ValidadorInstitucion extends Validador {
 
     public void validarUbicacion(String ubicacion) throws ValidacionException {
         if (esLongitudValida(ubicacion, 200)) {
-            INSTITUCION.setUBICACION(ubicacion);
+            INSTITUCION.setUbicacion(ubicacion);
         } else {
             throw new ValidacionException("Ubicacion muy larga");
         }
     }
     
-    public void validarNombre(String nombre) throws ValidacionException {
+    public void validarNombre(String nombre) throws ValidacionException, SQLException {
         if (!esLongitudValida(nombre, 150)) {
             throw new ValidacionException("Nombre muy largo");
         }
-        INSTITUCION.setNOMBRE(nombre);
+        if (existeEsteRegistro(nombre, new InstitucionDAO())) {
+            throw new ValidacionException("Ya existe una institucion con este nombre");
+        }
+        INSTITUCION.setNombre(nombre);
     }
     
     public void validarDescripcion(String descripcion) throws ValidacionException {
         if (!esLongitudValida(descripcion, 400)) {
             throw new ValidacionException("Descripcion muy larga");
         }
-        INSTITUCION.setDESCRIPCION(descripcion);
+        INSTITUCION.setDescripcion(descripcion);
     }
     
     public void guardarEstado(boolean estado) {

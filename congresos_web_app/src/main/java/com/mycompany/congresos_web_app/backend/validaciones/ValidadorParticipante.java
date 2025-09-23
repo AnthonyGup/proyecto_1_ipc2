@@ -18,6 +18,14 @@ public class ValidadorParticipante extends Validador {
     
     private final Participante PARTICIPANTE = new Participante();
     
+    public ValidadorParticipante(String ID_PERSONAL, String NOMBRE_COMPLETO, String TELEFONO, String ORGANIZACION, String ID_USUARIO) throws ValidacionException, SQLException {
+        validarId(ID_PERSONAL);
+        validarNombreCompleto(NOMBRE_COMPLETO);
+        validarTelefono(TELEFONO);
+        validarOrganizacion(ORGANIZACION);
+        validarIdUsuario(ID_USUARIO);
+    }
+    
     /**
      * Valida que el id_personal sea correcto
      * @param id identificacion personal del usuario

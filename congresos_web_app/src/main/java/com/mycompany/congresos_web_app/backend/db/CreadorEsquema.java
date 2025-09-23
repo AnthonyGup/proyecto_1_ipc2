@@ -20,20 +20,20 @@ public class CreadorEsquema {
 
             // verificar linea 45 la cantidad de caracteres a aceptar en las validaciones
             String sql = """
-                         CREATE DATABASE IF NOT EXISTS congresos_web;
-                         USE congresos_web;
+                         CREATE DATABASE IF NOT EXISTS congresosdb;
+                         USE congresosdb;
                          
-                         CREATE TABLE usuario (
+                         CREATE TABLE IF NOT EXISTS usuario (
                          correo VARCHAR(150) NOT NULL,
                          estado BOOLEAN DEFAULT TRUE,
                          fecha_creacion DATE NOT NULL,
                          password VARCHAR(255) NOT NULL,
-                         cartera_digital DECIMAL(10,2),
+                         cartera_digital DECIMAL(10,2) DEFAULT 0.00,
                          rol ENUM('ADMIN_SISTEMA', 'ADMIN_CONGRESO', 'COMITE', 'PARTICIPANTE') DEFAULT 'PARTICIPANTE',
                          CONSTRAINT pk_usuario PRIMARY KEY (correo)
                         );
                          
-                         CREATE TABLE participante (
+                         CREATE TABLE IF NOT EXISTS participante (
                          id_personal VARCHAR(20) NOT NULL,
                          telefono VARCHAR(20) NOT NULL,
                          organizacion VARCHAR(200),
@@ -41,34 +41,34 @@ public class CreadorEsquema {
                          id_usuario VARCHAR(150) NOT NULL,
                          CONSTRAINT pk_participante PRIMARY KEY (id_personal),
                          CONSTRAINT fk_participante_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(correo)
-                                  );
+                         );
                          
-                         CREATE TABLE institucion (
-                         id_institucion INT AUTO_INCREMENT,
-                         ubicacion VARCHAR(200) NOT NULL,
+                         CREATE TABLE IF NOT EXISTS institucion (
                          nombre VARCHAR(150) NOT NULL,
+                         ubicacion VARCHAR(200) NOT NULL,
                          descripcion VARCHAR (400) NOT NULL,
                          estado BOOLEAN DEFAULT TRUE,
-                         CONSTRAINT pk_institucion PRIMARY KEY (id_institucion)
-                                  );
+                         CONSTRAINT pk_institucion PRIMARY KEY (nombre)
+                         );
                          
-                         CREATE TABLE congreso (
+                         CREATE TABLE IF NOT EXISTS congreso (
                          id_congreso VARCHAR(12) NOT NULL,
                          ubicacion VARCHAR(150) NOT NULL,
                          titulo VARCHAR(150) NOT NULL,
                          descripcion VARCHAR(400),
                          precio DECIMAL(10,2) DEFAULT 35.00,
-                         comision DECIMAL(2,4) NOT NULL,
+                         comision DECIMAL(5,4) NOT NULL,
                          estado BOOLEAN DEFAULT TRUE,
+                         convocatoria BOOLEAN DEFAULT FALSE,
                          fecha_inicio DATE NOT NULL,
-                         id_institucion INT,
+                         id_institucion VARCHAR(150),
                          id_admin VARCHAR(150) NOT NULL,
                          CONSTRAINT pk_congreso PRIMARY KEY (id_congreso),
-                         CONSTRAINT fk_congreso_institucion FOREIGN KEY (id_institucion) REFERENCES institucion (id_institucion),
+                         CONSTRAINT fk_congreso_institucion FOREIGN KEY (id_institucion) REFERENCES institucion (nombre),
                          CONSTRAINT fk_congreso_usuario FOREIGN KEY (id_admin) REFERENCES usuario (correo)
                          );
                          
-                         CREATE TABLE comite_cientifico (
+                         CREATE TABLE IF NOT EXISTS comite_cientifico (
                          id_comite INT AUTO_INCREMENT,
                          id_usuario VARCHAR(150) NOT NULL,
                          id_congreso VARCHAR(12) NOT NULL,
@@ -77,7 +77,7 @@ public class CreadorEsquema {
                          CONSTRAINT fk_comite_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
                          );
                          
-                         CREATE TABLE diploma (
+                         CREATE TABLE IF NOT EXISTS diploma (
                          id_diploma INT AUTO_INCREMENT,
                          tipo ENUM('PARTICIPACION', 'PRESENTACION') NOT NULL,
                          descripcion VARCHAR(200) NOT NULL,
@@ -88,7 +88,7 @@ public class CreadorEsquema {
                          CONSTRAINT fk_diploma_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
                          );
                          
-                         CREATE TABLE inscripcion (
+                         CREATE TABLE IF NOT EXISTS inscripcion (
                          id_inscripcion INT AUTO_INCREMENT,
                          fecha_pago DATE NOT NULL,
                          monto DECIMAL (10,2) NOT NULL,
@@ -99,7 +99,7 @@ public class CreadorEsquema {
                          CONSTRAINT fk_inscripcion_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
                          );
                          
-                         CREATE TABLE salon (
+                         CREATE TABLE IF NOT EXISTS salon (
                          id_salon INT AUTO_INCREMENT,
                          salon VARCHAR(50) NOT NULL,
                          ubicacion VARCHAR(150) NOT NULL,
@@ -109,31 +109,7 @@ public class CreadorEsquema {
                          CONSTRAINT fk_salon_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
                          );
                          
-                         CREATE TABLE convocatoria (
-                         id_convocatoria INT AUTO_INCREMENT,
-                         titulo VARCHAR(150) NOT NULL,
-                         estado BOOLEAN DEFAULT TRUE,
-                         fecha_inicio DATE NOT NULL,
-                         fecha_fin DATE NOT NULL,
-                         id_congreso VARCHAR(12) NOT NULL,
-                         CONSTRAINT pk_convocatoria PRIMARY KEY (id_convocatoria),
-                         CONSTRAINT fk_convocatoria_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
-                         );
-                         
-                         CREATE TABLE trabajo (
-                         id_trabajo INT AUTO_INCREMENT,
-                         tipo ENUM ('PONENCIA', 'TALLER') NOT NULL,
-                         descripcion VARCHAR(200) NOT NULL,
-                         titulo VARCHAR (150) NOT NULL,
-                         estado BOOLEAN DEFAULT FALSE,
-                         id_participante VARCHAR(20) NOT NULL,
-                         id_convocatoria INT NOT NULL,
-                         CONSTRAINT pk_trabajo PRIMARY KEY (id_trabajo),
-                         CONSTRAINT fk_trabajo_participante FOREIGN KEY (id_participante) REFERENCES participante (id_personal),
-                         CONSTRAINT fk_trabajo_convocatoria FOREIGN KEY (id_convocatoria) REFERENCES convocatoria (id_convocatoria)
-                         );
-                         
-                         CREATE TABLE actividad (
+                         CREATE TABLE IF NOT EXISTS actividad (
                          id_actividad VARCHAR(12) NOT NULL,
                          nombre VARCHAR(150) NOT NULL,
                          descripcion VARCHAR(500) NOT NULL,
@@ -144,23 +120,24 @@ public class CreadorEsquema {
                          id_encargado VARCHAR(150) NOT NULL,
                          id_congreso VARCHAR(12) NOT NULL,
                          id_salon INT NOT NULL,
+                         estado ENUM ('APROVADO', 'RECHAZADO', 'PENDIENTE'),
                          CONSTRAINT pk_actividad PRIMARY KEY (id_actividad),
                          CONSTRAINT fk_actividad_usuario FOREIGN KEY (id_encargado) REFERENCES usuario (correo),
                          CONSTRAINT fk_actividad_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso),
                          CONSTRAINT fk_actividad_salon FOREIGN KEY (id_salon) REFERENCES salon (id_salon)
                          );
                          
-                         CREATE TABLE reserva_taller ( 
+                         CREATE TABLE IF NOT EXISTS reserva_taller ( 
                          id_reserva INT AUTO_INCREMENT,
                          fecha_reserva DATE NOT NULL,
                          id_actividad VARCHAR(12) NOT NULL,
-                         id_participante VARCHAR(150) NOT NULL,
+                         id_participante VARCHAR(20) NOT NULL,
                          CONSTRAINT pk_reserva PRIMARY KEY (id_reserva),
                          CONSTRAINT fk_reserva_actividad FOREIGN KEY (id_actividad) REFERENCES actividad (id_actividad),
                          CONSTRAINT fk_reserva_usuario FOREIGN KEY (id_participante) REFERENCES participante (id_personal)
                          );
                          
-                         CREATE TABLE asistencia (
+                         CREATE TABLE IF NOT EXISTS asistencia (
                          id_asistencia INT AUTO_INCREMENT,
                          fecha_hora DATETIME NOT NULL,
                          id_actividad VARCHAR(12) NOT NULL,
@@ -181,4 +158,32 @@ public class CreadorEsquema {
             e.printStackTrace();
         }
     }
+    
+    /*
+    CREATE TABLEIF NOT EXISTS convocatoria (
+                         id_convocatoria INT AUTO_INCREMENT,
+                         titulo VARCHAR(150) NOT NULL,
+                         estado BOOLEAN DEFAULT TRUE,
+                         fecha_inicio DATE NOT NULL,
+                         fecha_fin DATE NOT NULL,
+                         id_congreso VARCHAR(12) NOT NULL,
+                         CONSTRAINT pk_convocatoria PRIMARY KEY (id_convocatoria),
+                         CONSTRAINT fk_convocatoria_congreso FOREIGN KEY (id_congreso) REFERENCES congreso (id_congreso)
+                         );
+    
+    CREATE TABLE trabajo (
+                         id_trabajo INT AUTO_INCREMENT,
+                         tipo ENUM ('PONENCIA', 'TALLER') NOT NULL,
+                         descripcion VARCHAR(200) NOT NULL,
+                         titulo VARCHAR (150) NOT NULL,
+                         estado BOOLEAN DEFAULT FALSE,
+                         id_participante VARCHAR(20) NOT NULL,
+                         id_convocatoria INT NOT NULL,
+                         CONSTRAINT pk_trabajo PRIMARY KEY (id_trabajo),
+                         CONSTRAINT fk_trabajo_participante FOREIGN KEY (id_participante) REFERENCES participante (id_personal),
+                         CONSTRAINT fk_trabajo_convocatoria FOREIGN KEY (id_convocatoria) REFERENCES convocatoria (id_convocatoria)
+                         );
+                         
+    
+    */
 }

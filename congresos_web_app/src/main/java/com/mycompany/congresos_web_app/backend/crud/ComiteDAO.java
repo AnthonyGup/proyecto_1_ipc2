@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class ComiteDAO extends Crud<Comite> {
 
-    public ComiteDAO() {
+    public ComiteDAO()  {
         super("comite_cientifico", "id_comite");
     }
     

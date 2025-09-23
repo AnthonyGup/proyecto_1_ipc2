@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class InstitucionDAO extends Crud<Institucion> {
 
     public InstitucionDAO() {
-        super("institucion", "id_institucion");
+        super("institucion", "nombre");
     }
     
     @Override
@@ -26,9 +26,9 @@ public class InstitucionDAO extends Crud<Institucion> {
 
         PreparedStatement stmt = CONNECTION.prepareStatement(sql);
 
-        stmt.setString(1, entidad.getUBICACION());
-        stmt.setString(2, entidad.getNOMBRE());
-        stmt.setString(3, entidad.getDESCRIPCION());
+        stmt.setString(1, entidad.getUbicacion());
+        stmt.setString(2, entidad.getNombre());
+        stmt.setString(3, entidad.getDescripcion());
         stmt.setBoolean(4, entidad.isEstado());
 
         int filasCreadas = stmt.executeUpdate();
@@ -44,10 +44,9 @@ public class InstitucionDAO extends Crud<Institucion> {
     public Institucion obtenerEntidad(ResultSet rs) throws SQLException {
         Institucion institucion = new Institucion();
         
-        institucion.setID_INSTITUCION(rs.getInt("id_institucion"));
-        institucion.setUBICACION(rs.getString("ubicacion"));
-        institucion.setNOMBRE(rs.getString("nombre"));
-        institucion.setDESCRIPCION(rs.getString("descripcion"));
+        institucion.setNombre(rs.getString("nombre"));
+        institucion.setUbicacion(rs.getString("ubicacion"));
+        institucion.setDescripcion(rs.getString("descripcion"));
         institucion.setEstado(rs.getBoolean("estado"));
 
         return institucion;

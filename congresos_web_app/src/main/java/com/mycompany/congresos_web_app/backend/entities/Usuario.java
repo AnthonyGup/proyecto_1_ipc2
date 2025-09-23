@@ -15,7 +15,7 @@ public class Usuario {
     
     private  String CORREO;
     private  String PASSWORD;
-    private  TipoUsuario ROL;
+    private  TipoUsuario ROL; // ADMIN_SISTEMA, ADMIN_CONGRESO, COMITE, PARTICIPANTE;
     private  LocalDate FECHA_CREACION;
     private double cartera_digital;
     private boolean estado = true; //estado activo

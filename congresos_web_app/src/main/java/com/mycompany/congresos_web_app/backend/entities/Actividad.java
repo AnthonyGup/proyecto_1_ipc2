@@ -4,6 +4,7 @@
  */
 package com.mycompany.congresos_web_app.backend.entities;
 
+import com.mycompany.congresos_web_app.backend.entities.enums.EstadosActividad;
 import com.mycompany.congresos_web_app.backend.entities.enums.TipoActividad;
 import java.time.LocalTime;
 
@@ -14,98 +15,103 @@ import java.time.LocalTime;
 public class Actividad {
     
     private String id_actividad;
-    private String NOMBRE;
-    private String DESCRIPCION;
+    private String nombre;
+    private String descripcion;
     private int cupo_maximo = 0;
-    private TipoActividad TIPO;
-    private LocalTime HORA_INICIO;
-    private LocalTime HORA_FIN;
-    private String ID_ENCARGADO;
-    private String ID_CONGRESO;
-    private int ID_SALON;
-
-    public void setId_actividad(String id_actividad) {
-        this.id_actividad = id_actividad;
-    }
-
-    public void setNOMBRE(String NOMBRE) {
-        this.NOMBRE = NOMBRE;
-    }
-
-    public void setDESCRIPCION(String DESCRIPCION) {
-        this.DESCRIPCION = DESCRIPCION;
-    }
-
-    public void setTIPO(TipoActividad TIPO) {
-        this.TIPO = TIPO;
-    }
-
-    public void setHORA_INICIO(LocalTime HORA_INICIO) {
-        this.HORA_INICIO = HORA_INICIO;
-    }
-
-    public void setHORA_FIN(LocalTime HORA_FIN) {
-        this.HORA_FIN = HORA_FIN;
-    }
-
-    public void setID_ENCARGADO(String ID_ENCARGADO) {
-        this.ID_ENCARGADO = ID_ENCARGADO;
-    }
-
-    public void setID_CONGRESO(String ID_CONGRESO) {
-        this.ID_CONGRESO = ID_CONGRESO;
-    }
-
-    public void setID_SALON(int ID_SALON) {
-        this.ID_SALON = ID_SALON;
-    }
-
-    
-
-    public void setCupo_maximo(int cupo_maximo) {
-        this.cupo_maximo = cupo_maximo;
-    }
+    private TipoActividad tipo; // PONENCIA, TALLER
+    private LocalTime hora_inicio;
+    private LocalTime hora_fin;
+    private String id_encargado;
+    private String id_congreso;
+    private int id_salon;
+    private EstadosActividad estado; //APROVADO, RECHAZADO, PENDIENTE
 
     public String getId_actividad() {
         return id_actividad;
     }
 
-    public String getNOMBRE() {
-        return NOMBRE;
+    public void setId_actividad(String id_actividad) {
+        this.id_actividad = id_actividad;
+    }
+    
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getDESCRIPCION() {
-        return DESCRIPCION;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getCupo_maximo() {
         return cupo_maximo;
     }
 
-    public TipoActividad getTIPO() {
-        return TIPO;
+    public void setCupo_maximo(int cupo_maximo) {
+        this.cupo_maximo = cupo_maximo;
     }
 
-    public LocalTime getHORA_INICIO() {
-        return HORA_INICIO;
+    public TipoActividad getTipo() {
+        return tipo;
     }
 
-    public LocalTime getHORA_FIN() {
-        return HORA_FIN;
+    public void setTipo(TipoActividad tipo) {
+        this.tipo = tipo;
     }
 
-    public String getID_ENCARGADO() {
-        return ID_ENCARGADO;
+    public LocalTime getHora_inicio() {
+        return hora_inicio;
     }
 
-    public String getID_CONGRESO() {
-        return ID_CONGRESO;
+    public void setHora_inicio(LocalTime hora_inicio) {
+        this.hora_inicio = hora_inicio;
     }
 
-    public int getID_SALON() {
-        return ID_SALON;
+    public LocalTime getHora_fin() {
+        return hora_fin;
     }
-    
-    
+
+    public void setHora_fin(LocalTime hora_fin) {
+        this.hora_fin = hora_fin;
+    }
+
+    public String getId_encargado() {
+        return id_encargado;
+    }
+
+    public void setId_encargado(String id_encargado) {
+        this.id_encargado = id_encargado;
+    }
+
+    public String getId_congreso() {
+        return id_congreso;
+    }
+
+    public void setId_congreso(String id_congreso) {
+        this.id_congreso = id_congreso;
+    }
+
+    public int getId_salon() {
+        return id_salon;
+    }
+
+    public void setId_salon(int id_salon) {
+        this.id_salon = id_salon;
+    }
+
+    public EstadosActividad getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadosActividad estado) {
+        this.estado = estado;
+    }
     
 }

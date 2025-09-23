@@ -12,5 +12,5 @@ public enum TipoUsuario {
     ADMIN_SISTEMA,
     ADMIN_CONGRESO,
     COMITE,
-    ASISTENTE;
+    PARTICIPANTE;
 }

@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class InscripcionDAO extends Crud<Inscripcion> {
 
-    public InscripcionDAO() {
+    public InscripcionDAO(){
         super("inscripcion", "id_inscripcion");
     }
     

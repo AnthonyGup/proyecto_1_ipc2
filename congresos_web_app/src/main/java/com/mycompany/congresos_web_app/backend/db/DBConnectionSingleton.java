@@ -7,11 +7,14 @@ package com.mycompany.congresos_web_app.backend.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author antho
  */
+
 public class DBConnectionSingleton {
     private static final String IP = "localhost";
     private static final int PUERTO = 3306;
@@ -26,11 +29,22 @@ public class DBConnectionSingleton {
 
     private DBConnectionSingleton() {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            String URL_SIN_ESQUEMA = "jdbc:mysql://" + IP + ":" + PUERTO;
+            Connection tempConnection = DriverManager.getConnection(URL_SIN_ESQUEMA, USER_NAME, PASSWORD);
+            
+            CreadorEsquema esquema = new CreadorEsquema();
+            esquema.crearTablas(tempConnection);
+            
+            tempConnection.close();
+            
             connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
         } catch (SQLException e) {
-            // manejamos la exception
             System.out.println("Error al conectarse");
             e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBConnectionSingleton.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

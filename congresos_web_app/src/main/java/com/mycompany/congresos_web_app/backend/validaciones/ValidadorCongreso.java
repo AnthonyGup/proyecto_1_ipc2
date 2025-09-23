@@ -27,28 +27,28 @@ public class ValidadorCongreso extends Validador {
         if (existeEsteRegistro(id, new CongresoDAO())) {
             throw new ValidacionException("Ya existe un registro con este codigo");
         }
-        CONGRESO.setID_CONGRESO(id);
+        CONGRESO.setId_congreso(id);
     }
     
     public void validarUbicacion(String ubicacion) throws ValidacionException {
         if (!esLongitudValida(ubicacion, 150)) {
             throw  new ValidacionException("La ubicacion es muy larga");
         }
-        CONGRESO.setUBICACION(ubicacion);
+        CONGRESO.setUbicacion(ubicacion);
     }
     
     public void validarTitulo(String titulo) throws ValidacionException {
         if (!esLongitudValida(titulo, 150)) {
             throw new ValidacionException("Titulo muy largo");
         }
-        CONGRESO.setTITULO(titulo);
+        CONGRESO.setTitulo(titulo);
     }
     
     public void validarDescripcion(String descripcion) throws ValidacionException {
         if (!esLongitudValida(descripcion, 400)) {
             throw new ValidacionException("Descripcion muy larga");
         }
-        CONGRESO.setDESCRIPCION(descripcion);
+        CONGRESO.setDescripcion(descripcion);
     }
     
     public void validarPrecio(double precio) throws ValidacionException {
@@ -58,14 +58,14 @@ public class ValidadorCongreso extends Validador {
         if (!esMontoValido(precio)) {
             throw new ValidacionException("Cantidad no valido");
         }
-        CONGRESO.setPRECIO(precio);
+        CONGRESO.setPrecio(precio);
     }
     
     public void validarComision(double comision) throws ValidacionException {
         if (!esMontoValido(comision)) {
             throw new ValidacionException("Comision invalida");
         }
-        CONGRESO.setCOMISION(comision);
+        CONGRESO.setComision(comision);
     }
     
     public void guardarEstado(boolean estado) {
@@ -76,23 +76,28 @@ public class ValidadorCongreso extends Validador {
         if (!esFechaValida(fecha)) {
             throw new ValidacionException("Fecha incorrecta");
         }
-        CONGRESO.setFECHA_INICIO(fecha);
+        CONGRESO.setFecha_inicio(fecha);
     }
     
-    public void validarInstitucion(int institucion) throws SQLException, ValidacionException {
+    public void validarInstitucion(String institucion) throws SQLException, ValidacionException {
         if (!existeEsteRegistro("" + institucion, new InstitucionDAO())) {
             throw new ValidacionException("No existe esta institucion");
         }
-        CONGRESO.setID_INSTITUCION(institucion);
+        CONGRESO.setId_institucion(institucion);
     }
     
     public void validarAdministrador(String id) throws ValidacionException, SQLException {
         if (!existeEsteRegistro(id, new UsuarioDAO())) {
             throw new ValidacionException("no existe un usuario con este codigo");
         }
-        CONGRESO.setID_ADMIN(id);
+        CONGRESO.setId_admin(id);
     }
     
+    public void validarConvocatoria(boolean estaActiva) {
+        CONGRESO.setConvocatoria(estaActiva);
+    }
+    
+    @Override
     public void crearRegistro() throws SQLException {
         
         CongresoDAO crud = new CongresoDAO();

@@ -11,7 +11,8 @@ public class Participante {
     private String TELEFONO;
     private String ORGANIZACION;
     private String ID_USUARIO;
-
+    
+    //setters
     public void setID_PERSONAL(String ID_PERSONAL) {
         this.ID_PERSONAL = ID_PERSONAL;
     }
@@ -33,7 +34,7 @@ public class Participante {
     }
 
     
-    
+    //getters
     public String getID_PERSONAL() {
         return ID_PERSONAL;
     }

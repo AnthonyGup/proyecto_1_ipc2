@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
 
 /**
  *
@@ -34,7 +35,7 @@ public abstract class Validador {
         if (texto.isBlank()) {
             return false;
         }
-        String codigo = "^" + prefijo + "\\d{"+ cantidad +"}$";
+        String codigo = "^" + prefijo + "\\d{" + cantidad + "}$";
         return texto.matches(codigo);
     }
 
@@ -95,17 +96,17 @@ public abstract class Validador {
     protected boolean existeEsteRegistro(String codigo, Crud tipo) throws SQLException {
         return tipo.readByPk(codigo) != null;
     }
-    
+
     protected boolean existeEsteRegistroById(String codigo, String id, Crud tipo) throws SQLException {
         return tipo.readByColumn(codigo, id) != null;
     }
 
     protected boolean esMontoValido(double monto) {
-        String texto = String.format("%.2f", monto);
+        String texto = String.format(Locale.US, "%.2f", monto);
         double redondeado = Double.parseDouble(texto);
         return Double.compare(monto, redondeado) == 0;
     }
-    
+
     public abstract void crearRegistro() throws SQLException;
 
 }

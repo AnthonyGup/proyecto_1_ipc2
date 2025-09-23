@@ -10,46 +10,37 @@ package com.mycompany.congresos_web_app.backend.entities;
  */
 public class Institucion {
     
-    private int ID_INSTITUCION; 
-    private String UBICACION;
-    private String NOMBRE;
-    private String DESCRIPCION;
+    private String ubicacion;
+    private String nombre;
+    private String descripcion;
     private boolean estado = true;
 
-    public void setID_INSTITUCION(int ID_INSTITUCION) {
-        this.ID_INSTITUCION = ID_INSTITUCION;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
-    public void setUBICACION(String UBICACION) {
-        this.UBICACION = UBICACION;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setNOMBRE(String NOMBRE) {
-        this.NOMBRE = NOMBRE;
-    }
-
-    public void setDESCRIPCION(String DESCRIPCION) {
-        this.DESCRIPCION = DESCRIPCION;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-    public int getID_INSTITUCION() {
-        return ID_INSTITUCION;
+
+    public String getUbicacion() {
+        return ubicacion;
     }
 
-    public String getUBICACION() {
-        return UBICACION;
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getNOMBRE() {
-        return NOMBRE;
-    }
-
-    public String getDESCRIPCION() {
-        return DESCRIPCION;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public boolean isEstado() {

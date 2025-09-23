@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class ParticipanteDAO extends Crud<Participante> {
 
-    public ParticipanteDAO() {
+    public ParticipanteDAO()  {
         super("participante", "id_personal");
     }
 

@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  */
 public class AsistenciaDAO extends Crud<Asistencia>{
 
-    public AsistenciaDAO() {
+    public AsistenciaDAO()  {
         super("asistencia", "id_asistencia");
     }
 
