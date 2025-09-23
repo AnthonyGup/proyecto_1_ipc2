@@ -22,9 +22,6 @@ public class ValidacionAsistencia extends Validador {
     private final Asistencia ASISTENCIA = new Asistencia();
     
     public void validarFechaHora(LocalDateTime fechaHora) throws ValidacionException {
-        if (!esFechaHoraValida(fechaHora)) {
-            throw new ValidacionException("Fecha y hora invalidos");
-        }
         ASISTENCIA.setFECHA_HORA(fechaHora);
     }
     

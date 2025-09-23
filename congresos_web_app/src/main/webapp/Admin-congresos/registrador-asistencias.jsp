@@ -20,7 +20,7 @@
 
                     <h4 class="mb-3">Registrar asistencia</h4>
 
-                    <form action="RegistrarAsistenciaServlet" method="post">
+                    <form action="RegistradorAsistenciasServlet" method="post">
 
                         <div class="mb-3">
                             <label for="id_actividad" class="form-label">ID Actividad</label>

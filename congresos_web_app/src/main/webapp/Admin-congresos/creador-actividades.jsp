@@ -19,8 +19,16 @@
 
                     <h4 class="mb-3">Crear nueva actividad</h4>
 
-                    <form action="CrearActividadServlet" method="post">
+                    <form action="CreadorActividadesServlet" method="post">
 
+                        <div class="mb-3">
+                            <label for="id_actividad" class="form-label">ID actividad</label>
+                            <input type="text" id="id_activiadad" name="id_actividad"
+                                   class="form-control border-secondary"
+                                   style="background-color: #121212; color: #f8f9fa;" placeholder="ACT-00000001" maxlength="12"
+                                   required>
+                        </div>
+                        
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" id="nombre" name="nombre"

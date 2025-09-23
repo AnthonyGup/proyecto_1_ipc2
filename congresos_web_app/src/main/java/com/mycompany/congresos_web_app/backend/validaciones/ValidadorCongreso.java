@@ -20,6 +20,7 @@ public class ValidadorCongreso extends Validador {
     
     private final Congreso CONGRESO = new Congreso();
     
+    
     public void validarID(String id) throws ValidacionException, SQLException {
         if (!esCodigoValido(id, "CON-", 12)) {
             throw new ValidacionException("El codigo no es correcto");

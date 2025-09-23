@@ -20,9 +20,8 @@
 
                     <h4 class="mb-3">Crear nuevo salón</h4>
 
-                    <form action="CrearSalonServlet" method="post">
+                    <form action="CreadorSalonesServlet" method="post">
 
-                        <!-- Nombre del salón -->
                         <div class="mb-3">
                             <label for="salon" class="form-label">Nombre del salón</label>
                             <input type="text" id="salon" name="salon"
@@ -31,7 +30,6 @@
                                    required>
                         </div>
 
-                        <!-- Ubicación -->
                         <div class="mb-3">
                             <label for="ubicacion" class="form-label">Ubicación</label>
                             <input type="text" id="ubicacion" name="ubicacion"
@@ -40,7 +38,6 @@
                                    required>
                         </div>
 
-                        <!-- Capacidad -->
                         <div class="mb-3">
                             <label for="capacidad" class="form-label">Capacidad</label>
                             <input type="number" id="capacidad" name="capacidad" min="1"
@@ -49,7 +46,6 @@
                                    required>
                         </div>
 
-                        <!-- ID Congreso -->
                         <div class="mb-3">
                             <label for="id_congreso" class="form-label">ID Congreso</label>
                             <input type="text" id="id_congreso" name="id_congreso"
@@ -59,7 +55,6 @@
                                    required>
                         </div>
 
-                        <!-- Botón -->
                         <button type="submit" class="btn btn-outline-light px-4">
                             Crear salón
                         </button>

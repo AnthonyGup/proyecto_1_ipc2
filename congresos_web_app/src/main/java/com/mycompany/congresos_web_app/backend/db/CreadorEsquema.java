@@ -61,7 +61,7 @@ public class CreadorEsquema {
                          estado BOOLEAN DEFAULT TRUE,
                          convocatoria BOOLEAN DEFAULT FALSE,
                          fecha_inicio DATE NOT NULL,
-                         id_institucion VARCHAR(150),
+                         id_institucion VARCHAR(150) NOT NULL,
                          id_admin VARCHAR(150) NOT NULL,
                          CONSTRAINT pk_congreso PRIMARY KEY (id_congreso),
                          CONSTRAINT fk_congreso_institucion FOREIGN KEY (id_institucion) REFERENCES institucion (nombre),

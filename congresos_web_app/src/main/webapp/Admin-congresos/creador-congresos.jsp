@@ -20,7 +20,7 @@
 
                     <h4 class="mb-3">Crear nuevo congreso</h4>
 
-                    <form action="CrearCongresoServlet" method="post">
+                    <form action="CreadorCongresosServlet" method="post">
 
                         <!-- ID Congreso -->
                         <div class="mb-3">
@@ -28,7 +28,7 @@
                             <input type="text" id="idCongreso" name="idCongreso"
                                    class="form-control border-secondary"
                                    style="background-color: #121212; color: #f8f9fa;"
-                                   placeholder="EVT-00000001" maxlength="12" required>
+                                   placeholder="CON-00000001" maxlength="12" required>
                         </div>
 
                         <!-- Título -->
